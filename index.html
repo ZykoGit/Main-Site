@@ -11,6 +11,7 @@
             font-family: Arial, sans-serif;
             background: #ffffff;
             color: #111;
+            overflow-x: hidden;
         }
 
         /* NAVIGATION BAR */
@@ -24,7 +25,7 @@
             padding: 15px 40px;
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 200;
         }
 
         .logo-area {
@@ -59,7 +60,7 @@
         }
 
         .nav-links a:hover {
-            color: #007bff; /* BLUE ACCENT */
+            color: #007bff;
         }
 
         /* MOBILE MENU BUTTON */
@@ -68,6 +69,30 @@
             font-size: 30px;
             cursor: pointer;
             user-select: none;
+        }
+
+        /* MOBILE SLIDE-OUT MENU */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background: #ffffff;
+            border-left: 2px solid #e5e5e5;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transition: 0.3s ease;
+            z-index: 300;
+        }
+
+        .mobile-menu a {
+            text-decoration: none;
+            color: #111;
+            font-size: 18px;
+            font-weight: 600;
         }
 
         /* HERO SECTION */
@@ -81,7 +106,7 @@
             max-width: 900px;
             height: 250px;
             object-fit: cover;
-            background: red; /* Placeholder */
+            background: red;
             border-radius: 10px;
         }
 
@@ -106,11 +131,48 @@
             max-width: 800px;
             height: 200px;
             object-fit: cover;
-            background: red; /* Placeholder */
+            background: red;
             border-radius: 10px;
         }
 
-        /* MERCH COMING SOON */
+        /* PROJECTS SECTION */
+        .projects {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .project-card {
+            width: 70%;
+            max-width: 900px;
+            margin: 20px auto;
+            background: #f8f8f8;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            border: 2px solid #e5e5e5;
+        }
+
+        .project-card img {
+            width: 40%;
+            height: 150px;
+            object-fit: cover;
+            background: red;
+            border-radius: 10px;
+        }
+
+        .project-text {
+            width: 60%;
+            text-align: left;
+        }
+
+        .project-text h4 {
+            margin: 0 0 10px 0;
+            font-size: 22px;
+        }
+
+        /* MERCH */
         .merch {
             padding: 50px 20px;
             text-align: center;
@@ -121,7 +183,7 @@
             max-width: 700px;
             height: 150px;
             object-fit: cover;
-            background: red; /* Placeholder */
+            background: red;
             border-radius: 10px;
         }
 
@@ -134,10 +196,7 @@
             border-top: 2px solid #e5e5e5;
         }
 
-        /* ------------------------------ */
-        /* MOBILE RESPONSIVE STYLING     */
-        /* ------------------------------ */
-
+        /* MOBILE RESPONSIVE */
         @media (max-width: 768px) {
 
             nav {
@@ -149,11 +208,11 @@
             }
 
             .nav-links {
-                display: none; /* Hide full nav on mobile */
+                display: none;
             }
 
             .menu-button {
-                display: block; /* Show hamburger menu */
+                display: block;
             }
 
             .hero img {
@@ -164,6 +223,21 @@
             .featured img {
                 width: 90%;
                 height: 180px;
+            }
+
+            .project-card {
+                flex-direction: column;
+                width: 90%;
+            }
+
+            .project-card img {
+                width: 100%;
+                height: 160px;
+            }
+
+            .project-text {
+                width: 100%;
+                text-align: center;
             }
 
             .merch img {
@@ -186,36 +260,59 @@
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">About</a>
+            <a href="#">Projects</a>
             <a href="#">Socials</a>
             <a href="#">YouTube</a>
             <a href="#">Merch (Coming Soon)</a>
             <a href="#">Contact</a>
         </div>
 
-        <div class="menu-button">☰</div>
+        <div class="menu-button" onclick="toggleMenu()">☰</div>
     </nav>
 
-    <!-- HERO SECTION -->
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Socials</a>
+        <a href="#">YouTube</a>
+        <a href="#">Merch (Coming Soon)</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <!-- HERO -->
     <section class="hero">
         <h2>Welcome to ZykoCoreX</h2>
         <p>The core of everything Zyko — content, socials, and more.</p>
-
         <img src="images/hero.png" alt="Hero Image">
     </section>
 
-    <!-- FEATURED CONTENT -->
+    <!-- FEATURED -->
     <section class="featured">
         <h3>Featured Content</h3>
         <p>Check out one of my latest uploads.</p>
-
         <img src="images/featured.png" alt="Featured Content">
     </section>
 
-    <!-- MERCH COMING SOON -->
+    <!-- PROJECTS -->
+    <section class="projects">
+        <h3>Current Projects</h3>
+        <p>Here’s what I’m working on right now.</p>
+
+        <div class="project-card">
+            <img src="images/project.png" alt="Project Image">
+            <div class="project-text">
+                <h4>Some Software</h4>
+                <p>Right now I'm coding a few different things that I will go public with eventually.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- MERCH -->
     <section class="merch">
         <h3>Merch — Coming Soon</h3>
         <p>New drops are in the works. Stay tuned.</p>
-
         <img src="images/merch.png" alt="Merch Coming Soon">
     </section>
 
@@ -224,6 +321,9 @@
         <p>Business Email: your-email@domain.com</p>
         <p>© 2026 ZykoCoreX — All Rights Reserved</p>
     </footer>
+
+    <!-- EXTERNAL JS -->
+    <script src="script.js"></script>
 
 </body>
 </html>
