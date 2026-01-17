@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZykoCoreX</title>
+
     <style>
         body {
             margin: 0;
@@ -39,7 +40,6 @@
             border-radius: 5px;
         }
 
-
         nav h1 {
             font-size: 24px;
             margin: 0;
@@ -60,6 +60,14 @@
 
         .nav-links a:hover {
             color: #007bff; /* BLUE ACCENT */
+        }
+
+        /* MOBILE MENU BUTTON */
+        .menu-button {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            user-select: none;
         }
 
         /* HERO SECTION */
@@ -125,8 +133,47 @@
             margin-top: 40px;
             border-top: 2px solid #e5e5e5;
         }
+
+        /* ------------------------------ */
+        /* MOBILE RESPONSIVE STYLING     */
+        /* ------------------------------ */
+
+        @media (max-width: 768px) {
+
+            nav {
+                padding: 10px 20px;
+            }
+
+            nav h1 {
+                font-size: 20px;
+            }
+
+            .nav-links {
+                display: none; /* Hide full nav on mobile */
+            }
+
+            .menu-button {
+                display: block; /* Show hamburger menu */
+            }
+
+            .hero img {
+                width: 95%;
+                height: 180px;
+            }
+
+            .featured img {
+                width: 90%;
+                height: 180px;
+            }
+
+            .merch img {
+                width: 85%;
+                height: 150px;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <!-- NAVIGATION -->
@@ -136,7 +183,6 @@
             <h1>ZykoCoreX</h1>
         </div>
 
-
         <div class="nav-links">
             <a href="#">Home</a>
             <a href="#">About</a>
@@ -145,6 +191,8 @@
             <a href="#">Merch (Coming Soon)</a>
             <a href="#">Contact</a>
         </div>
+
+        <div class="menu-button">☰</div>
     </nav>
 
     <!-- HERO SECTION -->
@@ -152,7 +200,6 @@
         <h2>Welcome to ZykoCoreX</h2>
         <p>The core of everything Zyko — content, socials, and more.</p>
 
-        <!-- Replace hero.png with your own image -->
         <img src="images/hero.png" alt="Hero Image">
     </section>
 
@@ -161,7 +208,6 @@
         <h3>Featured Content</h3>
         <p>Check out one of my latest uploads.</p>
 
-        <!-- Replace featured.png with your own image -->
         <img src="images/featured.png" alt="Featured Content">
     </section>
 
@@ -170,12 +216,12 @@
         <h3>Merch — Coming Soon</h3>
         <p>New drops are in the works. Stay tuned.</p>
 
-        <!-- Replace merch.png with your own image -->
         <img src="images/merch.png" alt="Merch Coming Soon">
     </section>
 
     <!-- FOOTER -->
     <footer>
+        <p>Business Email: your-email@domain.com</p>
         <p>© 2026 ZykoCoreX — All Rights Reserved</p>
     </footer>
 
