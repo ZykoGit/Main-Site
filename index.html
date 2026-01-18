@@ -6,6 +6,10 @@
     <title>ZykoCoreX</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -75,8 +79,8 @@
         .mobile-menu {
             position: fixed;
             top: 0;
-            right: -250px;
-            width: 250px;
+            right: -260px;
+            width: 260px;
             height: 100%;
             background: #ffffff;
             border-left: 2px solid #e5e5e5;
@@ -84,7 +88,7 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            transition: 0.3s ease;
+            transition: right 0.3s ease;
             z-index: 300;
         }
 
@@ -321,8 +325,19 @@
         <p>© 2026 ZykoCoreX — All Rights Reserved</p>
     </footer>
 
-    <!-- EXTERNAL JS -->
-    <script src="script.js"></script>
+    <!-- INLINE SCRIPT (FIXED + ALWAYS LOADS) -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("mobileMenu");
+            const current = window.getComputedStyle(menu).right;
+
+            if (current === "0px") {
+                menu.style.right = "-260px";
+            } else {
+                menu.style.right = "0px";
+            }
+        }
+    </script>
 
 </body>
 </html>
