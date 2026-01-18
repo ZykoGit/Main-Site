@@ -84,6 +84,7 @@
       background: rgba(0, 0, 0, 0.4);
       z-index: 250;
       display: none;
+      opacity: 0;
     }
 
     /* MOBILE MENU */
@@ -99,7 +100,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
-      transition: right 0.3s ease;
+      opacity: 0;
       z-index: 300;
     }
 
@@ -116,6 +117,33 @@
       cursor: pointer;
       margin-bottom: 10px;
     }
+
+    /* ANIMATIONS */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    @keyframes slideIn {
+      from { right: -260px; opacity: 0; }
+      to { right: 0; opacity: 1; }
+    }
+
+    @keyframes slideOut {
+      from { right: 0; opacity: 1; }
+      to { right: -260px; opacity: 0; }
+    }
+
+    .fade-in { animation: fadeIn 0.3s forwards; }
+    .fade-out { animation: fadeOut 0.3s forwards; }
+
+    .menu-slide-in { animation: slideIn 0.3s forwards; }
+    .menu-slide-out { animation: slideOut 0.3s forwards; }
 
     /* HERO SECTION */
     .hero {
@@ -290,7 +318,7 @@
     <div class="menu-button" onclick="openMenu()">☰</div>
   </nav>
 
-  <!-- OVERLAY BACKDROP -->
+  <!-- OVERLAY -->
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
   <!-- MOBILE MENU -->
@@ -339,4 +367,43 @@
   <!-- MERCH -->
   <section class="merch">
     <h3>Merch — Coming Soon</h3>
-    <p>
+    <p>New drops are in the works. Stay tuned.</p>
+    <img src="images/merch.png" alt="Merch Coming Soon" />
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 ZykoCoreX — All Rights Reserved</p>
+  </footer>
+
+  <!-- INLINE SCRIPT -->
+  <script>
+    function openMenu() {
+      const menu = document.getElementById("mobileMenu");
+      const overlay = document.getElementById("overlay");
+
+      menu.classList.remove("menu-slide-out");
+      overlay.classList.remove("fade-out");
+
+      menu.classList.add("menu-slide-in");
+      overlay.style.display = "block";
+      overlay.classList.add("fade-in");
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById("mobileMenu");
+      const overlay = document.getElementById("overlay");
+
+      menu.classList.remove("menu-slide-in");
+      overlay.classList.remove("fade-in");
+
+      menu.classList.add("menu-slide-out");
+      overlay.classList.add("fade-out");
+
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 300);
+    }
+  </script>
+</body>
+</html>
