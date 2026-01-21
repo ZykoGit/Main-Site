@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About • ZykoCoreX</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #ffffff;
+      color: #111;
+      overflow-x: hidden;
+      opacity: 0;
+      animation: fadeInPage 0.6s ease forwards;
+    }
+
+    @keyframes fadeInPage {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    :root {
+      --accent1: #5A4BFF;
+      --accent2: #7A3CFF;
+      --accent-gradient: linear-gradient(to right, #5A4BFF, #7A3CFF);
+      --dark-gradient: linear-gradient(to bottom, #0F0F1A, #1A0F2A);
+      --max-width: 1200px;
+    }
+
+    /* NAVIGATION */
+    nav {
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 2px solid #e5e5e5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      width: 45px;
+      height: 45px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    nav h1 {
+      font-size: 26px;
+      font-weight: 700;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 600;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent2);
+    }
+
+    .menu-button {
+      display: none;
+      font-size: 32px;
+      cursor: pointer;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* MOBILE MENU + OVERLAY */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100dvh;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 250;
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -260px;
+      width: 260px;
+      height: 100dvh;
+      background: #ffffff;
+      border-left: 2px solid #e5e5e5;
+      padding: 40px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      opacity: 0;
+      z-index: 300;
+      box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+    }
+
+    /* MOBILE NAV SWAP: About first */
+    .mobile-menu a {
+      text-decoration: none;
+      color: #111;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 26px;
+      cursor: pointer;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    /* ANIMATIONS */
+    @keyframes slideIn {
+      from { right: -260px; opacity: 0; }
+      to { right: 0; opacity: 1; }
+    }
+
+    @keyframes slideOut {
+      from { right: 0; opacity: 1; }
+      to { right: -260px; opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    .menu-slide-in { animation: slideIn 0.3s forwards; }
+    .menu-slide-out { animation: slideOut 0.3s forwards; }
+    .fade-in { animation: fadeIn 0.3s forwards; }
+    .fade-out { animation: fadeOut 0.3s forwards; }
+
+    /* SECTION BASE */
+    section {
+      padding: 80px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .content-wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero h2 {
+      font-size: 48px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #444;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* IMAGE FRAME */
+    .image-frame {
+      width: 100%;
+      max-width: 350px;
+      height: 350px;
+      background: #f3f3f3;
+      border: 3px dashed #ccc;
+      border-radius: 12px;
+      margin: 40px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      font-size: 18px;
+    }
+
+    /* ABOUT TEXT */
+    .about-section {
+      text-align: left;
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    .about-section h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .about-section p {
+      margin-bottom: 20px;
+    }
+
+    /* STATS */
+    .stats-box {
+      margin-top: 40px;
+      background: #ffffff;
+      border: 2px solid #e5e5e5;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      max-width: 900px;
+      text-align: left;
+    }
+
+    .stats-box h3 {
+      font-size: 26px;
+      margin-bottom: 15px;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .stat {
+      background: #fafafa;
+      border: 2px solid #e5e5e5;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark-gradient);
+      padding: 30px;
+      text-align: center;
+      color: #fff;
+      margin-top: 40px;
+      border-top: 2px solid rgba(255,255,255,0.1);
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .menu-button { display: block; }
+      nav { padding: 12px 18px; }
+      nav h1 { font-size: 22px; }
+      .hero h2 { font-size: 36px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="logo-area">
+      <img src="images/IMG_1633.png" class="logo-img" alt="Logo" />
+      <h1>ZykoCoreX</h1>
+    </div>
+
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
+      <a href="socials.html">Socials</a>
+      <a href="merch.html">Merch (Coming Soon)</a>
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="menu-button" onclick="openMenu()">☰</div>
+  </nav>
+
+  <!-- OVERLAY -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+
+  <!-- MOBILE MENU (About first) -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="close-button" onclick="closeMenu()">✕</div>
+    <a href="about.html">About</a>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="socials.html">Socials</a>
+    <a href="merch.html">Merch (Coming Soon)</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="content-wrapper">
+      <h2>About Me</h2>
+      <p>Hey, I’m Micaiah — an aspiring game developer and content creator with big dreams and a chill vibe.</p>
+    </div>
+  </section>
+
+  <!-- IMAGE FRAME -->
+  <div class="image-frame">
+    Your image here
+  </div>
+
+  <!-- ABOUT SECTION -->
+  <section>
+    <div class="about-section">
+
+      <h3>Who I Am</h3>
+      <p>
+        I’m an aspiring game developer and content creator who’s always working on something new.
+        Whether it’s coding, streaming, or building something wild, I’m constantly pushing myself
+        to grow and create things I’m proud of.
+      </p>
+
+      <h3>What ZykoCoreX Is</h3>
+      <p>
+        ZykoCoreX is the main hub for everything I do.  
+        If I make a new website — it’s here.  
+        If I drop some insane merch — it’s here.  
+        If I code a video game — it’s here.  
+        This is the place you can always check to see exactly what I’m up to.
+      </p>
+
+      <h3>My Goals</h3>
+      <p>
+        I’ve got a lot on my plate right now, but that’s how I like it.  
+        I’m trying to do well in school, post genuinely good content and streams,
+        and work on three different coding projects at the same time.  
+        It’s a grind, but it’s a fun one.
+      </p>
+
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-box">
+      <h3>Quick Stats</h3>
+
+      <div class="stats-grid">
+        <div class="stat">🎮 Favorite Game Genres: Action, RPG, Indie</div>
+        <div class="stat">💻 Coding: HTML, CSS, JS (and more coming)</div>
+        <div class="stat">🎥 Content Style: Chill, fun, creative</div>
+        <div class="stat">🧠 Current Projects: 3 coding projects</div>
+        <div class="stat">📚 Balancing: School + content + dev work</div>
+        <div class="stat">🎉 Fun Fact: I’m always building something</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 ZykoCoreX — All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function openMenu() {
+      const menu = document.getElementById("mobileMenu");
+      const overlay = document.getElementById("overlay");
+
+      menu.classList.remove("menu-slide-out");
+      overlay.classList.remove("fade-out");
+
+      menu.classList.add("menu-slide-in");
+      overlay.style.display = "block";
+      overlay.style.pointerEvents = "auto";
+      overlay.classList.add("fade-in");
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById("mobileMenu");
+      const overlay = document.getElementById("overlay");
+
+      menu.classList.remove("menu-slide-in");
+      overlay.classList.remove("fade-in");
+
+      menu.classList.add("menu-slide-out");
+      overlay.classList.add("fade-out");
+
+      setTimeout(() => {
+        overlay.style.display = "none";
+        overlay.style.pointerEvents = "none";
+      }, 300);
+    }
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 768) {
+        closeMenu();
+      }
+    });
+  </script>
+
+</body>
+</html>
