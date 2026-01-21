@@ -36,6 +36,9 @@
       --accent-gradient: linear-gradient(to right, #5A4BFF, #7A3CFF);
       --dark-gradient: linear-gradient(to bottom, #0F0F1A, #1A0F2A);
       --max-width: 1200px;
+
+      --cyan-lightning: #00e5ff;
+      --red-lightning: #ff4b6a;
     }
 
     /* NAVIGATION */
@@ -183,6 +186,7 @@
       width: 100%;
       max-width: var(--max-width);
       text-align: center;
+      margin: 0 auto;
     }
 
     /* HERO (LIGHT) */
@@ -192,6 +196,10 @@
       -webkit-background-clip: text;
       color: transparent;
       margin-bottom: 10px;
+    }
+
+    .hero p {
+      margin-bottom: 25px;
     }
 
     .hero img {
@@ -209,6 +217,10 @@
       color: #fff;
     }
 
+    .featured p {
+      margin-bottom: 25px;
+    }
+
     .featured img {
       width: 100%;
       max-width: 900px;
@@ -219,13 +231,17 @@
     }
 
     /* PROJECTS (LIGHT) */
+    .projects p {
+      margin-bottom: 25px;
+    }
+
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
       width: 100%;
       max-width: var(--max-width);
-      margin-top: 40px;
+      margin-top: 10px;
     }
 
     .project-card {
@@ -235,6 +251,7 @@
       border: 2px solid #e5e5e5;
       box-shadow: 0 6px 20px rgba(0,0,0,0.1);
       transition: 0.2s ease;
+      text-align: left;
     }
 
     .project-card:hover {
@@ -259,6 +276,10 @@
     }
 
     /* MERCH (LIGHT) */
+    .merch p {
+      margin-bottom: 25px;
+    }
+
     .merch img {
       width: 100%;
       max-width: 700px;
@@ -278,6 +299,62 @@
       border-top: 2px solid rgba(255,255,255,0.1);
     }
 
+    /* LIGHTNING DIVIDERS */
+    .lightning-divider {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 0 0 0;
+      margin: -20px 0 -20px 0;
+    }
+
+    .lightning-svg {
+      width: 100%;
+      max-width: 900px;
+      height: 60px;
+    }
+
+    .lightning-path {
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 8 10;
+      animation: lightningPulse 1.4s infinite ease-in-out;
+      filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.8));
+    }
+
+    .lightning-cyan {
+      stroke: var(--cyan-lightning);
+      filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.9));
+    }
+
+    .lightning-red {
+      stroke: var(--red-lightning);
+      filter: drop-shadow(0 0 8px rgba(255, 75, 106, 0.9));
+    }
+
+    @keyframes lightningPulse {
+      0% {
+        stroke-dashoffset: 0;
+        opacity: 0.9;
+      }
+      40% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.4;
+      }
+      60% {
+        opacity: 1;
+      }
+      100% {
+        stroke-dashoffset: -60;
+        opacity: 0.9;
+      }
+    }
+
     /* MOBILE BREAKPOINT */
     @media (max-width: 768px) {
       .nav-links {
@@ -288,16 +365,28 @@
         display: block;
       }
 
+      nav {
+        padding: 12px 18px;
+      }
+
+      nav h1 {
+        font-size: 22px;
+      }
+
       .hero h2 {
         font-size: 36px;
       }
 
       .hero img {
-        height: 200px;
+        height: 220px;
       }
 
       .featured img {
-        height: 200px;
+        height: 220px;
+      }
+
+      .lightning-svg {
+        height: 50px;
       }
     }
   </style>
@@ -349,6 +438,16 @@
     </div>
   </section>
 
+  <!-- CYAN LIGHTNING DIVIDER (HERO → FEATURED) -->
+  <div class="lightning-divider">
+    <svg class="lightning-svg" viewBox="0 0 100 20" preserveAspectRatio="none">
+      <path
+        class="lightning-path lightning-cyan"
+        d="M0 10 L10 7 L18 12 L26 5 L34 13 L42 6 L50 11 L58 4 L66 12 L74 6 L82 13 L90 7 L100 10"
+      />
+    </svg>
+  </div>
+
   <!-- FEATURED -->
   <section class="featured">
     <div class="content-wrapper">
@@ -373,6 +472,16 @@
       </div>
     </div>
   </section>
+
+  <!-- RED LIGHTNING DIVIDER (PROJECTS → MERCH) -->
+  <div class="lightning-divider">
+    <svg class="lightning-svg" viewBox="0 0 100 20" preserveAspectRatio="none">
+      <path
+        class="lightning-path lightning-red"
+        d="M0 10 L8 6 L16 13 L24 5 L32 11 L40 4 L48 12 L56 6 L64 14 L72 5 L80 12 L88 7 L100 10"
+      />
+    </svg>
+  </div>
 
   <!-- MERCH -->
   <section class="merch">
