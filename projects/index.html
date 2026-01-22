@@ -30,7 +30,7 @@
 
     @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
 
-    /* NAVIGATION */
+    /* NAVIGATION — MATCHED TO HOME */
     nav {
       width: 100%;
       backdrop-filter: blur(12px);
@@ -39,7 +39,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 40px;
+      padding: 14px 30px; /* MATCHED HOME */
       position: sticky;
       top: 0;
       z-index: 9999;
@@ -57,7 +57,7 @@
       letter-spacing: 1px;
     }
 
-    .nav-links { display: none; gap: 32px; }
+    .nav-links { display: flex; gap: 32px; }
     .nav-links a {
       text-decoration: none;
       color: #ddd;
@@ -70,7 +70,7 @@
     }
 
     .menu-button {
-      display: block;
+      display: none;
       font-size: 34px;
       cursor: pointer;
       background: var(--accent-gradient);
@@ -126,6 +126,12 @@
     .menu-slide-out { animation: slideOut 0.3s forwards; }
     .fade-in { animation: fadeIn 0.3s forwards; }
     .fade-out { animation: fadeOut 0.3s forwards; }
+
+    /* MOBILE NAV FIX — MATCHED HOME */
+    @media (max-width: 768px) {
+      .menu-button { display: block; }
+      .nav-links { display: none; }
+    }
 
     /* SECTIONS */
     section {
@@ -241,7 +247,7 @@
   <!-- NAVIGATION -->
   <nav>
     <div class="logo-area">
-      <img src="/images/IMG_1633.png" class="logo-img" alt="Logo" />
+      <img src="../images/IMG_1633.png" class="logo-img" alt="Logo" />
       <h1>ZykoCoreX</h1>
     </div>
 
