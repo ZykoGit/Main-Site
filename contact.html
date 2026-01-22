@@ -6,13 +6,24 @@
   <title>Contact • ZykoCoreX</title>
 
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
+    :root {
+      --accent1: #5A4BFF;
+      --accent2: #7A3CFF;
+      --accent3: #9D4BFF;
+      --accent-gradient: linear-gradient(135deg, #5A4BFF, #7A3CFF, #9D4BFF);
+      --dark-gradient: linear-gradient(to bottom, #0A0A12, #131324, #1A0F2A);
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --glass: rgba(255, 255, 255, 0.15);
+      --max-width: 1200px;
+    }
 
     body {
       font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #111;
+      background: var(--dark-gradient);
+      color: #fff;
       overflow-x: hidden;
       opacity: 0;
       animation: fadeInPage 0.6s ease forwards;
@@ -20,51 +31,48 @@
 
     @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
 
-    :root {
-      --accent1: #5A4BFF;
-      --accent2: #7A3CFF;
-      --accent-gradient: linear-gradient(to right, #5A4BFF, #7A3CFF);
-      --dark-gradient: linear-gradient(to bottom, #0F0F1A, #1A0F2A);
-      --max-width: 1200px;
-    }
-
     /* NAVIGATION */
     nav {
       width: 100%;
-      background: #ffffff;
-      border-bottom: 2px solid #e5e5e5;
+      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.35);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 40px;
+      padding: 18px 40px;
       position: sticky;
       top: 0;
       z-index: 9999;
     }
 
-    .logo-area { display: flex; align-items: center; gap: 10px; }
-    .logo-img { width: 45px; height: 45px; border-radius: 5px; object-fit: cover; }
+    .logo-area { display: flex; align-items: center; gap: 12px; }
+    .logo-img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
 
     nav h1 {
-      font-size: 26px;
-      font-weight: 700;
+      font-size: 28px;
+      font-weight: 800;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
+      letter-spacing: 1px;
     }
 
-    .nav-links { display: flex; gap: 30px; }
+    .nav-links { display: flex; gap: 32px; }
     .nav-links a {
       text-decoration: none;
-      color: #111;
+      color: #ddd;
       font-weight: 600;
-      transition: 0.2s;
+      transition: 0.25s;
     }
-    .nav-links a:hover { color: var(--accent2); }
+    .nav-links a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px var(--accent2);
+    }
 
     .menu-button {
       display: none;
-      font-size: 32px;
+      font-size: 34px;
       cursor: pointer;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
@@ -73,40 +81,43 @@
 
     /* MOBILE MENU */
     .overlay {
-      position: fixed; top: 0; left: 0;
-      width: 100vw; height: 100dvh;
-      background: rgba(0,0,0,0.45);
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      opacity: 0;
+      pointer-events: none;
       z-index: 250;
-      display: none; opacity: 0; pointer-events: none;
     }
 
     .mobile-menu {
       position: fixed; top: 0; right: -260px;
       width: 260px; height: 100dvh;
-      background: #ffffff;
-      border-left: 2px solid #e5e5e5;
-      padding: 40px 20px 20px 20px;
-      display: flex; flex-direction: column; gap: 20px;
-      opacity: 0; z-index: 300;
-      box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+      background: #0F0F1A;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding: 50px 25px;
+      display: flex; flex-direction: column; gap: 22px;
+      opacity: 0;
+      z-index: 300;
+      box-shadow: -5px 0 25px rgba(0,0,0,0.4);
     }
 
     .mobile-menu a {
       text-decoration: none;
-      color: #111;
-      font-size: 18px;
+      color: #eee;
+      font-size: 20px;
       font-weight: 600;
+      transition: 0.2s;
     }
+    .mobile-menu a:hover { color: var(--accent3); }
 
     .close-button {
-      position: absolute; top: 10px; right: 15px;
-      font-size: 26px; cursor: pointer;
+      position: absolute; top: 12px; right: 18px;
+      font-size: 28px; cursor: pointer;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    /* ANIMATIONS */
     @keyframes slideIn { from { right: -260px; opacity: 0; } to { right: 0; opacity: 1; } }
     @keyframes slideOut { from { right: 0; opacity: 1; } to { right: -260px; opacity: 0; } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -117,9 +128,9 @@
     .fade-in { animation: fadeIn 0.3s forwards; }
     .fade-out { animation: fadeOut 0.3s forwards; }
 
-    /* PAGE CONTENT */
+    /* HEADER */
     section {
-      padding: 80px 20px;
+      padding: 90px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -129,92 +140,107 @@
       width: 100%;
       max-width: var(--max-width);
       text-align: center;
-      margin: 0 auto;
     }
 
     .content-wrapper h2 {
-      font-size: 48px;
+      font-size: 54px;
+      font-weight: 900;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
     }
 
     .content-wrapper p {
-      font-size: 18px;
-      color: #444;
+      font-size: 20px;
+      color: #ccc;
       max-width: 700px;
-      margin: 0 auto 40px auto;
+      margin: 0 auto 50px auto;
+      line-height: 1.6;
     }
 
-    /* CONTACT FORM */
+    /* CONTACT CARD */
     .contact-card {
       width: 100%;
-      max-width: 700px;
-      background: #ffffff;
-      border: 2px solid #e5e5e5;
-      border-radius: 12px;
-      padding: 30px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      text-align: left;
+      max-width: 720px;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+      animation: fadeIn 0.6s ease forwards;
     }
 
     .contact-card h3 {
-      font-size: 28px;
+      font-size: 30px;
+      font-weight: 800;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
 
     form input, form textarea {
       width: 100%;
-      padding: 14px;
-      margin-bottom: 20px;
-      border: 2px solid #e5e5e5;
-      border-radius: 10px;
-      font-size: 16px;
+      padding: 16px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      border-radius: 12px;
+      font-size: 17px;
+      outline: none;
+      transition: 0.25s;
+    }
+
+    form input:focus, form textarea:focus {
+      border-color: var(--accent2);
+      box-shadow: 0 0 10px rgba(122,60,255,0.4);
     }
 
     form textarea {
-      height: 150px;
+      height: 160px;
       resize: none;
     }
 
     form button {
       width: 100%;
-      padding: 14px;
+      padding: 16px;
       background: var(--accent-gradient);
       border: none;
-      border-radius: 10px;
+      border-radius: 12px;
       color: white;
-      font-size: 18px;
-      font-weight: 600;
+      font-size: 20px;
+      font-weight: 700;
       cursor: pointer;
-      transition: 0.2s;
+      transition: 0.25s;
+      letter-spacing: 0.5px;
     }
 
     form button:hover {
-      opacity: 0.85;
+      transform: translateY(-2px);
+      box-shadow: 0 0 18px rgba(122,60,255,0.6);
     }
 
     /* FOOTER */
     footer {
-      background: var(--dark-gradient);
-      padding: 30px;
+      background: #0A0A12;
+      padding: 35px;
       text-align: center;
-      color: #fff;
-      margin-top: 40px;
-      border-top: 2px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
     /* MOBILE */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .menu-button { display: block; }
-      nav { padding: 12px 18px; }
-      nav h1 { font-size: 22px; }
-      .content-wrapper h2 { font-size: 36px; }
+      nav { padding: 14px 20px; }
+      nav h1 { font-size: 24px; }
+      .content-wrapper h2 { font-size: 40px; }
     }
   </style>
 </head>
@@ -243,7 +269,7 @@
   <!-- OVERLAY -->
   <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
-  <!-- MOBILE MENU (Contact First) -->
+  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="close-button" onclick="closeMenu()">✕</div>
     <a href="contact.html">Contact</a>
@@ -258,7 +284,7 @@
   <section>
     <div class="content-wrapper">
       <h2>Contact Me</h2>
-      <p>Got a question, idea, or just want to reach out? Send me a message below.</p>
+      <p>Have a question, idea, or something you want to share? Drop a message and I’ll check it out.</p>
     </div>
   </section>
 
@@ -268,12 +294,14 @@
       <h3>Send a Message</h3>
 
       <form action="https://api.web3forms.com/submit" method="POST">
-       <input type="hidden" name="access_key" value="6f069eb7-6fa0-430a-ad6a-6b1c2745c3b7">
-       <input type="text" name="name" required>
-       <input type="email" name="email" required>
-       <textarea name="message" required></textarea>
-       <button type="submit">Submit Form</button>
-     </form>
+        <input type="hidden" name="access_key" value="6f069eb7-6fa0-430a-ad6a-6b1c2745c3b7">
+
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
     </div>
   </section>
 
