@@ -6,176 +6,130 @@
   <title>ZykoCoreX</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-    html {
-      scroll-behavior: smooth;
+    :root {
+      --accent1: #5A4BFF;
+      --accent2: #7A3CFF;
+      --accent3: #9D4BFF;
+      --accent-gradient: linear-gradient(135deg, #5A4BFF, #7A3CFF, #9D4BFF);
+      --dark-gradient: linear-gradient(to bottom, #0A0A12, #131324, #1A0F2A);
+      --glass: rgba(255,255,255,0.12);
+      --max-width: 1200px;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background: #ffffff;
-      color: #111;
+      background: var(--dark-gradient);
+      color: #fff;
       overflow-x: hidden;
       opacity: 0;
       animation: fadeInPage 0.6s ease forwards;
     }
 
-    @keyframes fadeInPage {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    :root {
-      --accent1: #5A4BFF;
-      --accent2: #7A3CFF;
-      --accent-gradient: linear-gradient(to right, #5A4BFF, #7A3CFF);
-      --dark-gradient: linear-gradient(to bottom, #0F0F1A, #1A0F2A);
-      --max-width: 1200px;
-    }
+    @keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
 
     /* NAVIGATION */
     nav {
       width: 100%;
-      background: #ffffff;
-      border-bottom: 2px solid #e5e5e5;
+      backdrop-filter: blur(12px);
+      background: rgba(0,0,0,0.35);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 40px;
+      padding: 18px 40px;
       position: sticky;
       top: 0;
       z-index: 9999;
     }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-img {
-      width: 45px;
-      height: 45px;
-      object-fit: cover;
-      border-radius: 5px;
-    }
+    .logo-area { display: flex; align-items: center; gap: 12px; }
+    .logo-img { width: 48px; height: 48px; border-radius: 8px; object-fit: cover; }
 
     nav h1 {
-      font-size: 26px;
-      font-weight: 700;
+      font-size: 28px;
+      font-weight: 800;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
+      letter-spacing: 1px;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 30px;
-    }
-
+    .nav-links { display: flex; gap: 32px; }
     .nav-links a {
       text-decoration: none;
-      color: #111;
+      color: #ddd;
       font-weight: 600;
-      transition: 0.2s;
+      transition: 0.25s;
     }
-
     .nav-links a:hover {
-      color: var(--accent2);
+      color: #fff;
+      text-shadow: 0 0 8px var(--accent2);
     }
 
     .menu-button {
       display: none;
-      font-size: 32px;
+      font-size: 34px;
       cursor: pointer;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    /* MOBILE MENU + OVERLAY */
+    /* MOBILE MENU */
     .overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100dvh;
-      background: rgba(0, 0, 0, 0.45);
-      z-index: 250;
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.55);
       display: none;
       opacity: 0;
       pointer-events: none;
+      z-index: 250;
     }
 
     .mobile-menu {
-      position: fixed;
-      top: 0;
-      right: -260px;
-      width: 260px;
-      height: 100dvh;
-      background: #ffffff;
-      border-left: 2px solid #e5e5e5;
-      padding: 40px 20px 20px 20px; /* FIXED: added top padding */
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      position: fixed; top: 0; right: -260px;
+      width: 260px; height: 100dvh;
+      background: #0F0F1A;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      padding: 50px 25px;
+      display: flex; flex-direction: column; gap: 22px;
       opacity: 0;
       z-index: 300;
-      box-shadow: -5px 0 20px rgba(0,0,0,0.15);
+      box-shadow: -5px 0 25px rgba(0,0,0,0.4);
     }
 
     .mobile-menu a {
       text-decoration: none;
-      color: #111;
-      font-size: 18px;
+      color: #eee;
+      font-size: 20px;
       font-weight: 600;
+      transition: 0.2s;
     }
+    .mobile-menu a:hover { color: var(--accent3); }
 
     .close-button {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 26px;
-      cursor: pointer;
+      position: absolute; top: 12px; right: 18px;
+      font-size: 28px; cursor: pointer;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
     }
 
-    /* ANIMATIONS */
-    @keyframes slideIn {
-      from { right: -260px; opacity: 0; }
-      to { right: 0; opacity: 1; }
-    }
-
-    @keyframes slideOut {
-      from { right: 0; opacity: 1; }
-      to { right: -260px; opacity: 0; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      from { opacity: 1; }
-      to { opacity: 0; }
-    }
+    @keyframes slideIn { from { right: -260px; opacity: 0; } to { right: 0; opacity: 1; } }
+    @keyframes slideOut { from { right: 0; opacity: 1; } to { right: -260px; opacity: 0; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
 
     .menu-slide-in { animation: slideIn 0.3s forwards; }
     .menu-slide-out { animation: slideOut 0.3s forwards; }
     .fade-in { animation: fadeIn 0.3s forwards; }
     .fade-out { animation: fadeOut 0.3s forwards; }
 
-    /* SECTION BASE */
+    /* SECTIONS */
     section {
-      padding: 80px 20px;
+      padding: 90px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -185,31 +139,54 @@
       width: 100%;
       max-width: var(--max-width);
       text-align: center;
-      margin: 0 auto;
     }
 
     /* HERO */
     .hero h2 {
-      font-size: 48px;
+      font-size: 54px;
+      font-weight: 900;
       background: var(--accent-gradient);
       -webkit-background-clip: text;
       color: transparent;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #ccc;
+      margin-bottom: 40px;
     }
 
     .hero img {
       width: 100%;
       max-width: 900px;
-      height: 300px;
+      height: 320px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
     }
 
     /* FEATURED */
     .featured {
-      background: var(--dark-gradient);
-      color: #fff;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .featured h3 {
+      font-size: 36px;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .featured p {
+      color: #ccc;
+      margin-bottom: 30px;
     }
 
     .featured img {
@@ -217,63 +194,110 @@
       max-width: 900px;
       height: 260px;
       object-fit: cover;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.45);
     }
 
     /* PROJECTS */
+    .projects h3 {
+      font-size: 36px;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .projects p {
+      color: #ccc;
+      margin-bottom: 40px;
+    }
+
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
+      gap: 35px;
       width: 100%;
       max-width: var(--max-width);
-      margin-top: 10px;
     }
 
     .project-card {
-      background: #ffffff;
-      border-radius: 12px;
-      padding: 20px;
-      border: 2px solid #e5e5e5;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-      transition: 0.2s ease;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 25px;
       text-align: left;
+      transition: 0.25s;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.35);
     }
 
     .project-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.45);
     }
 
-    /* MERCH */
-    .merch img {
+    .project-card img {
       width: 100%;
-      max-width: 700px;
       height: 180px;
       object-fit: cover;
       border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      margin-bottom: 15px;
+    }
+
+    .project-card h4 {
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .project-card p {
+      color: #ccc;
+      line-height: 1.5;
+    }
+
+    /* MERCH */
+    .merch h3 {
+      font-size: 36px;
+      font-weight: 800;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 12px;
+    }
+
+    .merch p {
+      color: #ccc;
+      margin-bottom: 30px;
+    }
+
+    .merch img {
+      width: 100%;
+      max-width: 700px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.4);
     }
 
     /* FOOTER */
     footer {
-      background: var(--dark-gradient);
-      padding: 30px;
+      background: #0A0A12;
+      padding: 35px;
       text-align: center;
-      color: #fff;
-      margin-top: 40px;
-      border-top: 2px solid rgba(255,255,255,0.1);
+      color: #aaa;
+      margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.08);
     }
 
     /* MOBILE */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .menu-button { display: block; }
-      nav { padding: 12px 18px; }
-      nav h1 { font-size: 22px; }
-      .hero h2 { font-size: 36px; }
-      .hero img { height: 220px; }
+      nav { padding: 14px 20px; }
+      nav h1 { font-size: 24px; }
+      .hero h2 { font-size: 40px; }
+      .hero img { height: 240px; }
       .featured img { height: 220px; }
     }
   </style>
@@ -296,7 +320,6 @@
       <a href="merch.html">Merch (Coming Soon)</a>
       <a href="contact.html">Contact</a>
     </div>
-
 
     <div class="menu-button" onclick="openMenu()">☰</div>
   </nav>
@@ -394,9 +417,7 @@
     }
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth > 768) {
-        closeMenu();
-      }
+      if (window.innerWidth > 768) closeMenu();
     });
   </script>
 
