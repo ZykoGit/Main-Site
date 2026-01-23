@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 • Page Not Found</title>
+
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --accent1: #5A4BFF;
+      --accent2: #7A3CFF;
+      --accent3: #9D4BFF;
+      --accent-gradient: linear-gradient(135deg, #5A4BFF, #7A3CFF, #9D4BFF);
+      --dark-gradient: linear-gradient(to bottom, #0A0A12, #131324, #1A0F2A);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--dark-gradient);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 120px;
+      font-weight: 900;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #ccc;
+      max-width: 500px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      background: var(--accent-gradient);
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+      transition: 0.25s;
+      box-shadow: 0 0 15px rgba(90, 75, 255, 0.4);
+    }
+
+    a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 25px rgba(122, 60, 255, 0.6);
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      margin-bottom: 25px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(90, 75, 255, 0.5);
+    }
+  </style>
+</head>
+
+<body>
+
+  <img src="images/favicon.png" class="logo" alt="ZykoCoreX Logo">
+
+  <h1>404</h1>
+  <h2>Page Not Found</h2>
+
+  <p>
+    Looks like you took a wrong turn in the multiverse.  
+    The page you're looking for doesn’t exist — or it’s still under construction.
+  </p>
+
+  <a href="/Main-Site">Return Home</a>
+
+</body>
+</html>
