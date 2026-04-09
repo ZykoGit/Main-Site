@@ -167,7 +167,7 @@
       line-height: 1.6;
     }
 
-    /* MERCH PLACEHOLDER CARD */
+    /* MERCH CARD */
     .merch-card {
       width: 100%;
       max-width: 900px;
@@ -194,6 +194,59 @@
       font-size: 18px;
       color: #ddd;
       line-height: 1.6;
+    }
+
+    /* CAROUSEL */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      margin: 25px auto;
+      cursor: pointer;
+    }
+
+    .carousel-image {
+      width: 100%;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+      transition: opacity 0.4s ease;
+    }
+
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: var(--accent3);
+      cursor: pointer;
+      user-select: none;
+      padding: 10px;
+      transition: 0.2s;
+    }
+
+    .carousel-arrow:hover {
+      color: var(--accent1);
+      text-shadow: 0 0 12px var(--accent2);
+    }
+
+    .carousel-arrow.left { left: -10px; }
+    .carousel-arrow.right { right: -10px; }
+
+    .merch-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 22px;
+      background: var(--accent-gradient);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 10px;
+      transition: 0.25s;
+    }
+
+    .merch-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
     }
 
     /* FOOTER */
@@ -256,15 +309,29 @@
   <section>
     <div class="content-wrapper">
       <h2>Merch</h2>
-      <p>Nothing is live yet — I’m still designing everything. Stay tuned for drops.</p>
+      <p>Check out the latest designs from ZykonixHub — rotating preview below.</p>
     </div>
   </section>
 
-  <!-- MERCH PLACEHOLDER -->
+  <!-- MERCH PREVIEW -->
   <section>
     <div class="merch-card">
-      <h3>Coming Soon</h3>
-      <p>Merch is currently in development. Once everything is ready, this page will showcase shirts, hoodies, stickers, and more.</p>
+      <h3>Merch Preview</h3>
+      <p>Click any preview to open the full merch store.</p>
+
+      <div class="carousel-container" onclick="openStore()">
+        <span class="carousel-arrow left" onclick="event.stopPropagation(); prevImage()">&#10094;</span>
+
+        <img id="carouselImage" class="carousel-image" src="../images/IMG_3291.jpeg" alt="Merch Preview">
+
+        <span class="carousel-arrow right" onclick="event.stopPropagation(); nextImage()">&#10095;</span>
+      </div>
+
+      <a href="https://zykogit.github.io/ZK---Zykonix-Merch/" 
+         target="_blank" 
+         class="merch-button">
+         Visit Merch Store →
+      </a>
     </div>
   </section>
 
@@ -306,6 +373,47 @@
     window.addEventListener("resize", () => {
       if (window.innerWidth > 768) closeMenu();
     });
+
+    /* CAROUSEL LOGIC */
+    const images = [
+      "../images/IMG_3291.jpeg",
+      "../images/IMG_3284.jpeg",
+      "../images/IMG_3277.jpeg",
+      "../images/IMG_3286.jpeg",
+      "../images/IMG_3292.jpeg",
+      "../images/IMG_3265.jpeg",
+      "../images/IMG_3282.jpeg",
+      "../images/IMG_3266.jpeg",
+      "../images/IMG_3307.jpeg"
+    ];
+
+    let index = 0;
+    const imgElement = document.getElementById("carouselImage");
+
+    function showImage(i) {
+      imgElement.style.opacity = 0;
+      setTimeout(() => {
+        imgElement.src = images[i];
+        imgElement.style.opacity = 1;
+      }, 200);
+    }
+
+    function nextImage() {
+      index = (index + 1) % images.length;
+      showImage(index);
+    }
+
+    function prevImage() {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    }
+
+    // Auto-rotate every 5 seconds
+    setInterval(nextImage, 5000);
+
+    function openStore() {
+      window.open("https://zykogit.github.io/ZK---Zykonix-Merch/", "_blank");
+    }
   </script>
 
 </body>
